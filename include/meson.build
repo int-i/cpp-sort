@@ -1,0 +1,2 @@
+inc = include_directories('.')
+
