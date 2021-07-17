@@ -1,2 +1,2 @@
-inc = include_directories('.')
+sort_inc = include_directories('.')
 
