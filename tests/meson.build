@@ -1,5 +1,8 @@
 cmake = import('cmake')
 
+doctest_proj = subproject('doctest')
+doctest_dep = doctest_proj.get_variable('doctest_dep')
+
 rapidcheck_proj = cmake.subproject('rapidcheck')
 rapidcheck_dep = rapidcheck_proj.dependency('rapidcheck')
 
@@ -8,7 +11,7 @@ test(
   executable(
     'pbt',
     'pbt.cpp',
-    dependencies : rapidcheck_dep
+    dependencies : [doctest_dep, rapidcheck_dep]
   )
 )
 
