@@ -13,8 +13,8 @@ test(
   'tests',
   executable(
     'pbt',
-    'pbt.cpp',
-    dependencies: [doctest_dep, rapidcheck_dep, test_dep]
+    'test_sort.cpp',
+    dependencies: [rapidcheck_dep, sort_dep, test_dep]
   )
 )
 
