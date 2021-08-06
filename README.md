@@ -1,6 +1,6 @@
 # C++ Sort
 
-> C++20 Iterator Sorting Algorithm Implementation using and Concepts TS (/w RapidCheck)
+> C++20 Iterator Sorting Algorithm Implementation using Concepts TS (/w RapidCheck)
 
 
 
