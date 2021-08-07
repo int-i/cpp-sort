@@ -6,6 +6,8 @@
 
 ![C++](https://img.shields.io/badge/c++-20-00599C?logo=c%2B%2B&logoColor=white&style=for-the-badge)
 [![Meson](https://img.shields.io/badge/meson->=0.55.0-064F8C?style=for-the-badge)](https://mesonbuild.com/)
+[![GitHub Workflow](https://img.shields.io/github/workflow/status/int-i/cpp-sort/C++?logo=github&logoColor=white&style=for-the-badge)](https://github.com/int-i/cpp-sort/actions)
+[![Codecov](https://img.shields.io/codecov/c/gh/int-i/cpp-sort?logo=codecov&logoColor=white&style=for-the-badge)](https://codecov.io/gh/int-i/cpp-sort)
 [![License](https://img.shields.io/github/license/int-i/cpp-sort?style=for-the-badge)](./LICENSE)
 
 ## Build
