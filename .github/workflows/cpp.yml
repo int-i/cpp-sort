@@ -1,0 +1,42 @@
+name: C++
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  codecov:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout sources
+      uses: actions/checkout@v2
+
+    - name: Set up Python 3
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3
+
+    - name: Install GCC
+      run: |
+        sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+        sudo apt-get install gcc-11 g++-11
+
+    - name: Install Meson & Ninja
+      run: |
+        python -m pip install --upgrade pip
+        pip install meson ninja
+
+    - name: Generate coverage report
+      run: |
+        CC=gcc-11 CXX=g++-11 meson setup build -Db_coverage=true
+        ninja -C build test
+        ninja -C build coverage-xml
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v2
+      with:
+        file: ./coverage.xml
+        fail_ci_if_error: true
