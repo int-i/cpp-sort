@@ -20,7 +20,7 @@ jobs:
       with:
         python-version: 3
 
-    - name: Install GCC
+    - name: Install GCC 11
       run: |
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test
         sudo apt-get install gcc-11 g++-11
@@ -30,10 +30,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install meson ninja gcovr
 
-    - name: Generate coverage report
+    - name: Test
       run: |
         CC=gcc-11 CXX=g++-11 meson setup build -Db_coverage=true
-        ninja -C build test
+        meson test -C build
+
+    - name: Generate coverage report
+      run: |
         ninja -C build coverage-xml
 
     - name: Upload coverage to Codecov
