@@ -12,35 +12,41 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout sources
-      uses: actions/checkout@v2
+      - name: Checkout sources
+        uses: actions/checkout@v2
 
-    - name: Set up Python 3
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3
+      - name: Set up Python 3
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3
 
-    - name: Install GCC 11
-      run: |
-        sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-        sudo apt-get install gcc-11 g++-11
+      - name: Install GCC 11
+        run: |
+          sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+          sudo apt-get install gcc-11 g++-11
 
-    - name: Install Meson, Ninja, and Gcovr
-      run: |
-        python -m pip install --upgrade pip
-        pip install meson ninja gcovr
+      - name: Set up GCC 11
+        run: |
+          sudo ln -f -s /usr/bin/gcc-11 /usr/bin/gcc
+          sudo ln -f -s /usr/bin/g++-11 /usr/bin/g++
+          sudo ln -f -s /usr/bin/gcov-11 /usr/bin/gcov
 
-    - name: Test
-      run: |
-        CC=gcc-11 CXX=g++-11 meson setup build -Db_coverage=true
-        meson test -C build
+      - name: Install Meson, Ninja, and Gcovr
+        run: |
+          python -m pip install --upgrade pip
+          pip install meson ninja gcovr
 
-    - name: Generate coverage report
-      run: |
-        ninja -C build coverage-xml
+      - name: Test
+        run: |
+          meson setup build -Db_coverage=true
+          meson test -C build
 
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v2
-      with:
-        file: ./build/meson-logs/coverage.xml
-        fail_ci_if_error: true
+      - name: Generate coverage report
+        run: |
+          ninja -C build coverage-xml
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          file: ./build/meson-logs/coverage.xml
+          fail_ci_if_error: true
