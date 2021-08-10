@@ -3,6 +3,11 @@ name: C++
 on:
   push:
     branches: [ main ]
+    paths:
+      - '**.h'
+      - '**.cpp'
+      - '**.wrap'
+      - '**/meson.build'
   pull_request:
     branches: [ main ]
 
@@ -42,8 +47,7 @@ jobs:
           meson test -C build
 
       - name: Generate coverage report
-        run: |
-          ninja -C build coverage-xml
+        run: ninja -C build coverage-xml
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
