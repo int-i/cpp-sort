@@ -8,6 +8,7 @@ on:
       - '**.cpp'
       - '**.wrap'
       - '**/meson.build'
+      - '.github/workflows/**'
   pull_request:
     branches: [ main ]
 
