@@ -12,3 +12,12 @@ test(
   )
 )
 
+test(
+  'test stable',
+  executable(
+    'test_stable',
+    'test_stable.cpp',
+    dependencies: [rapidcheck_dep, sort_dep]
+  )
+)
+
