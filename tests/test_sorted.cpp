@@ -3,48 +3,47 @@
 #include <rapidcheck.h>
 #include <sort.h>
 
-void assert_sort(const std::vector<int> &original, const std::vector<int> &sorted) {
-    RC_ASSERT(std::is_sorted(sorted.begin(), sorted.end()));
-    auto v = original;
-    std::sort(v.begin(), v.end());
-    RC_ASSERT(v == sorted);
-}
-
 int main() {
-    rc::check("Bubble Sort", [](const std::vector<int> &v) {
+    rc::check("Bubble Sort", [](std::vector<int> v) {
         auto v_copied = v;
         sort::bubble_sort(v_copied.begin(), v_copied.end());
-        assert_sort(v, v_copied);
+        std::sort(v.begin(), v.end());
+        RC_ASSERT(v == v_copied);
     });
 
-    rc::check("Heap Sort", [](const std::vector<int> &v) {
+    rc::check("Heap Sort", [](std::vector<int> v) {
         auto v_copied = v;
         sort::heap_sort(v_copied.begin(), v_copied.end());
-        assert_sort(v, v_copied);
+        std::sort(v.begin(), v.end());
+        RC_ASSERT(v == v_copied);
     });
 
-    rc::check("Insertion Sort", [](const std::vector<int> &v) {
+    rc::check("Insertion Sort", [](std::vector<int> v) {
         auto v_copied = v;
         sort::insertion_sort(v_copied.begin(), v_copied.end());
-        assert_sort(v, v_copied);
+        std::sort(v.begin(), v.end());
+        RC_ASSERT(v == v_copied);
     });
 
-    rc::check("Merge Sort", [](const std::vector<int> &v) {
+    rc::check("Merge Sort", [](std::vector<int> v) {
         auto v_copied = v;
         sort::merge_sort(v_copied.begin(), v_copied.end());
-        assert_sort(v, v_copied);
+        std::sort(v.begin(), v.end());
+        RC_ASSERT(v == v_copied);
     });
 
-    rc::check("Quick Sort", [](const std::vector<int> &v) {
+    rc::check("Quick Sort", [](std::vector<int> v) {
         auto v_copied = v;
         sort::quick_sort(v_copied.begin(), v_copied.end());
-        assert_sort(v, v_copied);
+        std::sort(v.begin(), v.end());
+        RC_ASSERT(v == v_copied);
     });
 
-    rc::check("Selection Sort", [](const std::vector<int> &v) {
+    rc::check("Selection Sort", [](std::vector<int> v) {
         auto v_copied = v;
         sort::selection_sort(v_copied.begin(), v_copied.end());
-        assert_sort(v, v_copied);
+        std::sort(v.begin(), v.end());
+        RC_ASSERT(v == v_copied);
     });
     return 0;
 }
