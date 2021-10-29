@@ -3,7 +3,7 @@
 > C++20 Iterator Sorting Algorithm Implementation using Concepts TS (/w RapidCheck)
 
 ![C++](https://img.shields.io/badge/c++-20-00599C?logo=c%2B%2B&logoColor=white&style=for-the-badge)
-[![Meson](https://img.shields.io/badge/meson->=0.55.0-064F8C?style=for-the-badge)](https://mesonbuild.com/)
+[![Meson](https://img.shields.io/badge/meson->=0.55.0-064F8C?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHBhdGggZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBkPSJNMTUuOTY5IDMwQzkuNDE1IDI5Ljk3MyAyIDI2LjQ0IDIgMjYuNDQgMi40MjcgOS41NzQgMTQuOTE5IDIuNTkyIDE1Ljk2NSAyLjAzN1YybC4wMzUuMDIuMDM1LS4wMnYuMDRDMTcuMDgxIDIuNiAyOS41NzMgOS41NzggMzAgMjYuNDQzYzAgMC03LjQ2MyAzLjU1Ny0xNC4wMzEgMy41NTdaIi8+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTE3LjggMjMuMWMuNjM4LjM1My41NjcgMS4zNDMuNTY3IDEuMzQzLTYuMDI0LjkxOS03LjUxMi03LjcwNi03LjUxMi03LjcwNmEuOS45IDAgMCAxLTEuMzQ2LS4zNTNjMi4zMzgtNS45OTQgMTAuNDE3LTIuNzU3IDEwLjQxNy0yLjc1Ny0uNDQzLS41ODUuOTIxLTEuMDM4LjkyMS0xLjAzOEMyNC44MTUgMTcuNDM5IDE3LjggMjMuMSAxNy44IDIzLjFaIi8+PC9zdmc+&style=for-the-badge)](https://mesonbuild.com/)
 [![GitHub Workflow](https://img.shields.io/github/workflow/status/int-i/cpp-sort/C++?logo=github&logoColor=white&style=for-the-badge)](https://github.com/int-i/cpp-sort/actions)
 [![Codecov](https://img.shields.io/codecov/c/gh/int-i/cpp-sort?logo=codecov&logoColor=white&style=for-the-badge)](https://codecov.io/gh/int-i/cpp-sort)
 [![License](https://img.shields.io/github/license/int-i/cpp-sort?style=for-the-badge)](./LICENSE)
