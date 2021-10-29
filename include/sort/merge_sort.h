@@ -9,8 +9,8 @@ namespace sort {
     void merge_sort(I first, S last, Compare cmp = Compare{}) {
         if (last - first > 1) {
             auto middle = first + (last - first) / 2;
-            merge_sort(first, middle);
-            merge_sort(middle, last);
+            merge_sort(first, middle, cmp);
+            merge_sort(middle, last, cmp);
             std::inplace_merge(first, middle, last, cmp);
         }
     }
