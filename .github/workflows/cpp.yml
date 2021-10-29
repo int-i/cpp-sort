@@ -3,9 +3,13 @@ name: C++
 on:
   push:
     branches: [ main ]
-    paths-ignore:
-      - README.md
-      - LICENSE
+    paths:
+      - '.github/workflows/cpp.yml'
+      - 'include/**'
+      - 'subprojects/**'
+      - 'tests/**'
+      - 'gcovr.cfg'
+      - 'meson.build'
   pull_request:
     branches: [ main ]
 
@@ -18,15 +22,8 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v2
 
-      - name: Set up Python 3
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3
-
       - name: Install GCC 11
-        run: |
-          sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-          sudo apt-get install gcc-11 g++-11
+        run: sudo apt-get install g++-11
 
       - name: Set up GCC 11
         run: |
@@ -35,11 +32,9 @@ jobs:
           sudo ln -f -s /usr/bin/gcov-11 /usr/bin/gcov
 
       - name: Install Meson, Ninja, and Gcovr
-        run: |
-          python -m pip install --upgrade pip
-          pip install meson ninja gcovr
+        run: pip install meson ninja gcovr
 
-      - name: Test
+      - name: Test sources
         run: |
           meson setup build -Db_coverage=true
           meson test -C build
