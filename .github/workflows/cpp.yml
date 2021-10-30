@@ -5,6 +5,7 @@ on:
     branches: [ main ]
     paths:
       - '.github/workflows/cpp.yml'
+      - 'benchmarks/**'
       - 'include/**'
       - 'subprojects/**'
       - 'tests/**'
@@ -14,6 +15,25 @@ on:
     branches: [ main ]
 
 jobs:
+  benchmark:
+    name: Benchmark
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Install GCC 11
+        run: sudo apt-get install g++-11
+
+      - name: Install Meson, Ninja, and Gcovr
+        run: pip install meson ninja gcovr
+
+      - name: Benchmark algorithms
+        run: |
+          meson setup build --buildtype=release
+          meson test -C build -v --benchmark
+
   codecov:
     name: CodeCov
     runs-on: ubuntu-latest
@@ -37,7 +57,7 @@ jobs:
       - name: Test sources
         run: |
           meson setup build -Db_coverage=true
-          meson test -C build
+          meson test -C build -v
 
       - name: Generate coverage report
         run: ninja -C build coverage-xml
