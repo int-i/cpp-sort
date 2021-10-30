@@ -19,6 +19,7 @@
 #### (Option) For Testing
 
 - [CMake](https://cmake.org/)(>=3.0)
+- [GoogleTest](https://github.com/google/googletest)(Meson [Wrap](https://mesonbuild.com/Wrap-dependency-system-manual.html))
 - [RapidCheck](https://github.com/emil-e/rapidcheck.git)(Meson [Wrap](https://mesonbuild.com/Wrap-dependency-system-manual.html))
 
 #### (Option) For Code Coverage
@@ -27,6 +28,10 @@
 - [Gcovr](https://www.gcovr.com/)(>=3.3)
 
 > Note: If you use **G++ 11** for supporting C++20, you should also use **Gcov 11**.
+
+#### (Option) For Benchmarking
+
+- [GoogleBenchmark](https://github.com/google/benchmark)(Meson [Wrap](https://mesonbuild.com/Wrap-dependency-system-manual.html))
 
 ### Guide
 
@@ -56,6 +61,13 @@
     $ meson setup buildcov -Db_coverage=true
     $ meson test -C buildcov
     $ ninja -C buildcov coverage
+    ```
+
+5. (Option) Benchmark sorting algorithm:
+
+    ```bash
+    $ meson setup build --buildtype=release
+    $ meson test -C build --benchmark
     ```
 
 ## License
