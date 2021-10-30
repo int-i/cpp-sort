@@ -26,6 +26,12 @@ jobs:
       - name: Install GCC 11
         run: sudo apt-get install g++-11
 
+      - name: Set up GCC 11
+        run: |
+          sudo ln -f -s /usr/bin/gcc-11 /usr/bin/gcc
+          sudo ln -f -s /usr/bin/g++-11 /usr/bin/g++
+          sudo ln -f -s /usr/bin/gcov-11 /usr/bin/gcov
+
       - name: Install Meson, Ninja, and Gcovr
         run: pip install meson ninja gcovr
 
