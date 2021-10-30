@@ -3,7 +3,7 @@
 #include <vector>
 #include <gtest/gtest.h>
 #include <rapidcheck/gtest.h>
-#include <sort.h>
+#include <sort/sort.h>
 
 using pii = std::pair<int, int>;
 

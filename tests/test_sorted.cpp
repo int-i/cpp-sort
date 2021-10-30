@@ -3,7 +3,7 @@
 #include <vector>
 #include <gtest/gtest.h>
 #include <rapidcheck/gtest.h>
-#include <sort.h>
+#include <sort/sort.h>
 
 RC_GTEST_PROP(SortedTest, BubbleSort, (std::vector<int> v)) {
     auto v_copied = v;
