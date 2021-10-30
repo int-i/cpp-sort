@@ -12,5 +12,6 @@ subdir('include')
 sort_lib = library('sort', include_directories : sort_inc)
 sort_dep = declare_dependency(include_directories : sort_inc, link_with : sort_lib)
 
+subdir('benchmarks')
 subdir('tests')
 
