@@ -44,13 +44,15 @@ jobs:
         run: pip install matplotlib
 
       - name: Render benchmark image
-        run: python benchmarks/visualizer.py build/benchmark.json benchmark.svg
+        run: python benchmarks/visualizer.py build/benchmark.json
 
       - name: Upload benchmark image
         uses: actions/upload-artifact@v2
         with:
           name: benchmark
-          path: benchmark.svg
+          path: |
+            benchmark.png
+            benchmark.svg
 
   codecov:
     name: CodeCov

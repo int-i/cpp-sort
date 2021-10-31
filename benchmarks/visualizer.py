@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument('path', help='benchmark data json file')
-    parser.add_argument('out', help='benchmark image file')
     args = parser.parse_args()
 
     with open(args.path) as file:
@@ -25,5 +24,6 @@ if __name__ == "__main__":
         plt.ylabel('log(time)')
         plt.title('Sorting Algorithm Benchmark')
         plt.legend()
-        plt.savefig(args.out)
+        plt.savefig('benchmark.png')
+        plt.savefig('benchmark.svg')
 
