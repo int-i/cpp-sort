@@ -1,29 +1,39 @@
 from argparse import ArgumentParser
+from itertools import groupby
 import math
 import json
+from operator import itemgetter
 import matplotlib.pyplot as plt
+
+
+def extract_label_from_benchmark(benchmark):
+    benchmark_name = benchmark['name']
+    return benchmark_name.split('/')[0][3:]
+
+
+def extract_size_from_benchmark(benchmark):
+    benchmark_name = benchmark['name']
+    return benchmark_name.split('/')[1]  # for log scale x axis
 
 
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument('path', help='benchmark data json file')
+    parser.add_argument('path', help='benchmark result json file')
     args = parser.parse_args()
 
     with open(args.path) as file:
-        benchmarks = json.load(file)['benchmarks']
-        data = dict()
-        for benchmark in benchmarks:
-            label, array_size = benchmark['name'].split('/')
-            if label not in data:
-                data[label] = [[], []]
-            data[label][0].append(array_size)
-            data[label][1].append(math.log(benchmark['real_time'], 4))
-        for label, [x, y] in data.items():
-            plt.plot(x, y, label=label)
+        benchmark_result = json.load(file)
+        benchmarks = benchmark_result['benchmarks']
+        elapsed_times = groupby(benchmarks, extract_label_from_benchmark)
+        for key, group in elapsed_times:
+            benchmark = list(group)
+            x = list(map(extract_size_from_benchmark, benchmark))
+            y = list(map(itemgetter('real_time'), benchmark))
+            y = list(map(math.log2, y))
+            plt.plot(x, y, label=key)
         plt.xlabel('array size')
-        plt.ylabel('log(time)')
+        plt.ylabel('log2(time)')
         plt.title('Sorting Algorithm Benchmark')
         plt.legend()
         plt.savefig('benchmark.png')
         plt.savefig('benchmark.svg')
-

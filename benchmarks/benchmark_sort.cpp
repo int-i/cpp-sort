@@ -71,11 +71,11 @@ static void BM_SelectionSort(benchmark::State &state) {
     }
 }
 
-BENCHMARK(BM_BubbleSort)->RangeMultiplier(4)->Range(1 << 6, 1 << 12);
-BENCHMARK(BM_HeapSort)->RangeMultiplier(4)->Range(1 << 6, 1 << 12);
-BENCHMARK(BM_InsertionSort)->RangeMultiplier(4)->Range(1 << 6, 1 << 12);
-BENCHMARK(BM_MergeSort)->RangeMultiplier(4)->Range(1 << 6, 1 << 12);
-BENCHMARK(BM_QuickSort)->RangeMultiplier(4)->Range(1 << 6, 1 << 12);
-BENCHMARK(BM_SelectionSort)->RangeMultiplier(4)->Range(1 << 6, 1 << 12);
+BENCHMARK(BM_BubbleSort)->Range(1, 1 << 15);
+BENCHMARK(BM_HeapSort)->Range(1, 1 << 15);
+BENCHMARK(BM_InsertionSort)->Range(1, 1 << 15);
+BENCHMARK(BM_MergeSort)->Range(1, 1 << 15);
+BENCHMARK(BM_QuickSort)->Range(1, 1 << 15);
+BENCHMARK(BM_SelectionSort)->Range(1, 1 << 15);
 
 BENCHMARK_MAIN();

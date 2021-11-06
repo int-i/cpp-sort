@@ -38,7 +38,7 @@ jobs:
       - name: Benchmark algorithms
         run: |
           meson setup build --buildtype=release
-          BENCHMARK_FORMAT=json BENCHMARK_OUT=benchmark.json meson test -C build -v --benchmark
+          BENCHMARK_FORMAT=json BENCHMARK_OUT=benchmark.json meson test -C build --benchmark -v -t=0
 
       - name: Install Matplotlib
         run: pip install matplotlib
