@@ -43,10 +43,10 @@ jobs:
       - name: Install Matplotlib
         run: pip install matplotlib
 
-      - name: Render benchmark image
+      - name: Draw benchmark result image
         run: python benchmarks/visualizer.py build/benchmark.json
 
-      - name: Upload benchmark image
+      - name: Upload benchmark result
         uses: actions/upload-artifact@v2
         with:
           name: benchmark

@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 from itertools import groupby
-import math
 import json
+import math
 from operator import itemgetter
 import matplotlib.pyplot as plt
 
