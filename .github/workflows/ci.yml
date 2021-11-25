@@ -1,11 +1,10 @@
-name: C++
+name: CI
 
 on:
   push:
     branches: [ main ]
     paths:
       - '.github/workflows/cpp.yml'
-      - 'benchmarks/**'
       - 'include/**'
       - 'subprojects/**'
       - 'tests/**'
@@ -15,45 +14,6 @@ on:
     branches: [ main ]
 
 jobs:
-  benchmark:
-    name: Benchmark
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout sources
-        uses: actions/checkout@v2
-
-      - name: Install GCC 11
-        run: sudo apt-get install g++-11
-
-      - name: Set up GCC 11
-        run: |
-          sudo ln -f -s /usr/bin/gcc-11 /usr/bin/gcc
-          sudo ln -f -s /usr/bin/g++-11 /usr/bin/g++
-          sudo ln -f -s /usr/bin/gcov-11 /usr/bin/gcov
-
-      - name: Install Meson, Ninja, and Gcovr
-        run: pip install meson ninja gcovr
-
-      - name: Benchmark algorithms
-        run: |
-          meson setup build --buildtype=release
-          BENCHMARK_FORMAT=json BENCHMARK_OUT=benchmark.json meson test -C build --benchmark -v -t=0
-
-      - name: Install Matplotlib
-        run: pip install matplotlib
-
-      - name: Draw benchmark result image
-        run: python benchmarks/visualizer.py build/benchmark.json
-
-      - name: Upload benchmark result
-        uses: actions/upload-artifact@v2
-        with:
-          name: benchmark
-          path: |
-            benchmark.png
-            benchmark.svg
-
   codecov:
     name: CodeCov
     runs-on: ubuntu-latest

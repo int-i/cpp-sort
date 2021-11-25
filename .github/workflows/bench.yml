@@ -1,0 +1,39 @@
+name: Benchmark
+
+on: workflow_dispatch
+
+jobs:
+  benchmark:
+    name: Benchmark
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Install GCC 11
+        run: sudo apt-get install g++-11
+
+      - name: Install Meson, Ninja, and Gcovr
+        run: pip install meson ninja gcovr
+
+      - name: Benchmark algorithms
+        env:
+          BENCHMARK_FORMAT: json
+          BENCHMARK_OUT: benchmark.json
+          CXX: g++-11
+        run: |
+          meson setup build --buildtype=release
+          meson test -C build --benchmark -v -t=0
+
+      - name: Install Matplotlib
+        run: pip install matplotlib
+
+      - name: Draw benchmark result image
+        run: python benchmarks/visualizer.py build/benchmark.json benchmarks/result.svg
+
+      - name: Upload benchmark result
+        run: |
+          git add .
+          git commit -m "Update benchmark result"
+          git push

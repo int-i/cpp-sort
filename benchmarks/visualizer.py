@@ -19,6 +19,7 @@ def extract_size_from_benchmark(benchmark):
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument('path', help='benchmark result json file')
+    parser.add_argument('out', help='benchmark result image file')
     args = parser.parse_args()
 
     with open(args.path) as file:
@@ -35,5 +36,4 @@ if __name__ == "__main__":
         plt.ylabel('ln(time)')
         plt.title('Sorting Algorithm Benchmark')
         plt.legend()
-        plt.savefig('benchmark.png')
-        plt.savefig('benchmark.svg')
+        plt.savefig(args.out)
