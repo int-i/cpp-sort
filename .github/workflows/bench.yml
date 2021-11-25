@@ -34,6 +34,8 @@ jobs:
 
       - name: Upload benchmark result
         run: |
+          git config user.email "astro.psj@gmail.com"
+          git config user.name "Seungjae Park"
           git add .
           git commit -m "Update benchmark result"
           git push
